@@ -1,5 +1,6 @@
 <template>
     <button
+        class="start-btn"
         v-if="click === true"
         @click="
             getCountryDataLoad();
@@ -8,13 +9,14 @@
     >
         START
     </button>
-    <div v-else>
+    <div v-else class="grid">
         <input
+            class="type-in-country"
             type="text"
             @keyup.enter.prevent="getCountryData(countryName)"
             v-model="countryName"
+            placeholder="Country..."
         />
-
         <article class="country">
             <img class="country__img" :src="imgUrl" />
             <div class="country__data">
@@ -92,4 +94,35 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.start-btn {
+    width: 200px;
+    height: 70px;
+    border-style: none;
+    border-radius: 100px;
+    background-color: #4f3981;
+    color: #f9d66f;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.type-in-country {
+    margin: 20px 20px;
+    width: 60%;
+    height: 30px;
+    border: none;
+    border-radius: 20px;
+    padding-left: 15px;
+
+    color: #555;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: 2;
+
+    justify-items: center;
+    align-items: center;
+}
+</style>
