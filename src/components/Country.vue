@@ -1,5 +1,10 @@
 <template>
-    <button
+    <!-- Изначально я никак не мог разобраться как же реализовать запрос до того -->
+    <!-- как это сделает пользователь, иначе всё ломалось и ничего не отображалось -->
+    <!-- самое смешное, что я уже пробовал в created ф-ии передать аргумент -->
+    <!-- и тогда по какой-то причине не сработало это, поэтому костыли -->
+    <!-- я не стал удалять, а закоментил, пусть останется как напоминание -->
+    <!-- <button
         class="start-btn"
         v-if="click === true"
         @click="
@@ -8,8 +13,8 @@
         "
     >
         START
-    </button>
-    <div v-else class="grid">
+    </button> -->
+    <div class="grid">
         <input
             class="type-in-country"
             type="text"
@@ -48,7 +53,7 @@ export default {
     name: "Country",
     // чтоб подцеплял инфу в момент создания приложения
     created() {
-        this.getCountryData();
+        this.getCountryData("Russia");
     },
     data() {
         return {
@@ -80,16 +85,16 @@ export default {
                 })
                 .catch((error) => console.log(error));
         },
-        getCountryDataLoad(countryName) {
-            axios
-                .get(`https://restcountries.com/v3.1/name/russia`)
-                .then((response) => {
-                    console.log(Object.values(response.data)[0]);
-                    this.countryData = Object.values(response.data)[0];
-                    this.imgUrl = Object.values(response.data)[0].flags.svg;
-                })
-                .catch((error) => console.log(error));
-        },
+        // getCountryDataLoad(countryName) {
+        //     axios
+        //         .get(`https://restcountries.com/v3.1/name/russia`)
+        //         .then((response) => {
+        //             console.log(Object.values(response.data)[0]);
+        //             this.countryData = Object.values(response.data)[0];
+        //             this.imgUrl = Object.values(response.data)[0].flags.svg;
+        //         })
+        //         .catch((error) => console.log(error));
+        // },
     },
 };
 </script>
